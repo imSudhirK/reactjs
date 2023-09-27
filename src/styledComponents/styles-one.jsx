@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Button } from 'antd';
+import { Button, Input } from 'antd';
 
 
 export const HorizontalLine = styled.div((props) => ({
@@ -128,6 +128,34 @@ export const StyledButton = styled(Button)((props) => ({
         color: props.c || "#fff"
     }
 }));
+
+export const StyledInput = styled(Input)((props) => ({
+    width: props.w || "",
+    height: props.h || '',
+    backgroundSize: props.bgs || "",
+    backgroundRepeat: props.bgr || '',
+    paddingRight: props.p || '',
+    backgroundImage: props.bgi || "",
+    backgroundPosition: props.bgp || "",
+    paddingRight: props.pr || "",
+    border: props.b || "",
+    margin: props.margin || "",
+    color: props.c || "",
+    ".ant-input-group-addon": {
+        height: props.h || ""
+    },
+    ".ant-input-group > .ant-input:last-child": {
+        height: props.h || "",
+        color: props.c || ""
+    },
+    ".ant-input-group": {
+        border: props.inputGrpB || "",
+        borderRadius: props.inputGrpBR || ""
+    },
+    ".ant-input": {
+        border: props.inputB || "",
+    }
+}))
 
 export const StyledIcon = styled.img((props) => ({
     width: props.w || "32px",

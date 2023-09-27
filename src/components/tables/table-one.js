@@ -1,9 +1,11 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React, { Fragment, useEffect, useRef, useState } from "react";
 import { Divider, Input, Radio, Table, message } from "antd";
 import datajson from "../../datas/one-table.json";
-import { StyledDiv, StyledText } from "../../styledComponents/one-styles"
+import { StyledDiv, StyledInput, StyledText } from "../../styledComponents/styles-one"
+import { debouncedSearch } from "../../helpers/utils-one";
 
 const OneTable = () => {
+    const refSearchByName = useRef(null);
     const [data, setData] = useState(datajson);
     const [selectionType, setSelectionType] = useState("checkbox");
     const [selectedRowIds, setSelectedRowIds] = useState([]);
@@ -33,6 +35,43 @@ const OneTable = () => {
         })
     }
 
+    // Search //
+    const handleSearchByName = () => {
+        const searchText = refSearchByName.current?.input?.value;
+        if (!searchText) return setData(datajson);
+        const newData = datajson.filter((obj) => {
+            if (obj.name.toLocaleLowerCase().includes(searchText.toLocaleLowerCase())) return true;
+            return false;
+        })
+        setData(newData);
+    }
+
+
+
+    // Row Selection //
+    const onRowSelectionChange = (selectedRowKeys, selectedRows) => {
+        setSelectedRowIds(selectedRowKeys);
+        setSelectedRowData(selectedRows);
+    }
+
+    const tableRowSelection = {
+        type: selectionType,
+        columnTitle: "Select",
+        hideSelectAll: true,
+        preserveSelectedRowKeys: true,
+        selectedRowKeys: selectedRowIds,
+        onChange: onRowSelectionChange,
+        getCheckboxProps: (record) => ({
+            disabled: record.id % 5 == 0
+        })
+    }
+
+    // useEffects //
+    useEffect(() => {
+        onChangeSelectedRow();
+    }, [selectedRowData, selectedTotalSalary])
+
+
     const columns = [
         {
             title: "ID",
@@ -59,27 +98,6 @@ const OneTable = () => {
         }
     ]
 
-    const onRowSelectionChange = (selectedRowKeys, selectedRows) => {
-        setSelectedRowIds(selectedRowKeys);
-        setSelectedRowData(selectedRows);
-    }
-
-    const tableRowSelection = {
-        type: selectionType,
-        columnTitle: "Select",
-        hideSelectAll: true,
-        preserveSelectedRowKeys: true,
-        selectedRowKeys: selectedRowIds,
-        onChange: onRowSelectionChange,
-        getCheckboxProps: (record) => ({
-            disabled: record.id % 5 == 0
-        })
-    }
-
-    useEffect(() => {
-        onChangeSelectedRow();
-    }, [selectedRowData, selectedTotalSalary])
-
     return (
         <Fragment>
             <div>Selection Type</div>
@@ -87,12 +105,16 @@ const OneTable = () => {
                 <Radio value="checkbox">checkbox</Radio>
                 <Radio value="radio">radio</Radio>
             </Radio.Group>
+            <StyledInput w="500px"
+                placeholder="Search Name" ref={refSearchByName}
+                onChange={debouncedSearch(handleSearchByName, 2000)}
+            />
             <Divider />
             <Table
                 rowKey={record => record.id}
                 columns={columns}
                 dataSource={data}
-                pagination={{pageSize: 5}}
+                pagination={{ pageSize: 5 }}
                 rowSelection={tableRowSelection}
             />
             <StyledDiv d="flex" w="60%">
