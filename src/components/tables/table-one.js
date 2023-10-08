@@ -1,8 +1,9 @@
 import React, { Fragment, useEffect, useRef, useState } from "react";
 import { Divider, Input, Radio, Table, message } from "antd";
 import datajson from "../../datas/one-table.json";
-import { StyledDiv, StyledInput, StyledText } from "../../styledComponents/styles-one"
+import { StyledButton, StyledDiv, StyledInput, StyledText } from "../../styledComponents/styles-one"
 import { debouncedSearch } from "../../helpers/utils-one";
+import { testApiCall } from "../../api/apis-one";
 
 const OneTable = () => {
     const refSearchByName = useRef(null);
@@ -46,7 +47,11 @@ const OneTable = () => {
         setData(newData);
     }
 
-
+    // handle confirm //
+    const handleConfirm = () => {
+        testApiCall().then((resp) => console.log(resp))
+            .catch((err) => console.log(err));
+    }
 
     // Row Selection //
     const onRowSelectionChange = (selectedRowKeys, selectedRows) => {
@@ -133,6 +138,11 @@ const OneTable = () => {
                     <StyledText ta="left" c="#000000" fs="16px" lh="17px" fw="500" ls="0.6px" margin="-2px auto 0px auto">
                         {selectedTotalSalary}
                     </StyledText>
+                </StyledDiv>
+                <StyledDiv>
+                    <StyledButton fw="700" h="43px" br="4px" fs="16px" lh="21.6px" hoverable
+                        onClick={handleConfirm}
+                    >Confirm</StyledButton>
                 </StyledDiv>
             </StyledDiv>
         </Fragment>
