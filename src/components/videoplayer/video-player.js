@@ -1,9 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
 import { StyledButton, StyledDiv } from "../../styledComponents/styles-one"
-import videoOne from "../../datas/video-one.mp4";
 import { Modal, Slider } from "antd";
 
 const VideoPlayer = ({
+    videoFile,
     videoTitle,
     openVideoPlayer,
     toggleVideoPlayer
@@ -13,26 +13,20 @@ const VideoPlayer = ({
     const [currentTime, setCurrentTime] = useState(0);
     const [duration, setDuration] = useState(0);
 
-    // handle play button
-    const handlePlayPause = () => {
-        const video = videoRef.current;
-        if (isPlaying) video.pause();
-        else video.play();
-        setIsPlaying(!isPlaying);
-    }
+    // handle play and Pause video 
+    const handlePause = () => { if (videoRef) { videoRef?.current.pause(); setIsPlaying(false); } }
+    const handlePlay = () => { if (videoRef) { videoRef?.current.play(); setIsPlaying(true); } }
 
     // handle timer 
     const handleTimeUpdate = () => {
-        const video = videoRef.current;
-        setCurrentTime(video.currentTime);
-        // handle end of video
-        if (video.currentTime == video.duration) setIsPlaying(false);
+        if (videoRef) {
+            setCurrentTime(videoRef.current?.currentTime || 0);
+            // handle end of video
+            if (videoRef.current?.currentTime == videoRef.current?.duration) setIsPlaying(false);
+        }
     }
 
-    const handleDurationChange = () => {
-        const video = videoRef.current;
-        setDuration(video.duration);
-    }
+    const handleDurationChange = () => { if (videoRef) setDuration(videoRef.current?.duration); }
 
     const handleTimer = () => {
         const video = videoRef.current;
@@ -46,9 +40,10 @@ const VideoPlayer = ({
 
     // handle video progress change 
     const handleVideoProgressChange = (newTime) => {
-        const video = videoRef.current;
-        video.currentTime = newTime;
-        setCurrentTime(newTime)
+        if (videoRef) {
+            videoRef.current.currentTime = newTime;
+            setCurrentTime(newTime);
+        }
     }
 
     useEffect(() => {
@@ -60,10 +55,10 @@ const VideoPlayer = ({
             title={videoTitle || "Video Player"}
             open={openVideoPlayer}
             footer={null}
-            onCancel={toggleVideoPlayer}
+            onCancel={() => { handlePause(); toggleVideoPlayer(); }}
             style={{ top: 30, minWidth: "70%", maxHeight: "80vh" }}
         >
-            <StyledDiv d="flex" jc="center"><video ref={videoRef} src={videoOne} style={{ width: "100%" }}></video></StyledDiv>
+            <StyledDiv d="flex" jc="center"><video ref={videoRef} src={videoFile} style={{ width: "100%" }}></video></StyledDiv>
 
             <StyledDiv d="flex" jc="center">
                 <StyledDiv ta="left" mr="20px">{Math.floor(currentTime)}</StyledDiv>
@@ -77,7 +72,7 @@ const VideoPlayer = ({
                 <StyledDiv ta="right" ml="20px">{Math.floor(duration)}</StyledDiv>
             </StyledDiv>
             <StyledDiv d="flex" jc="center">
-                <StyledButton onClick={handlePlayPause}>{isPlaying ? "Pause" : "Play"}</StyledButton>
+                <StyledButton onClick={isPlaying ? handlePause : handlePlay}>{isPlaying ? "Pause" : "Play"}</StyledButton>
             </StyledDiv>
 
         </Modal >
