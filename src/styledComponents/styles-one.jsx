@@ -17,6 +17,7 @@ export const StyledDiv = styled.div((props) => ({
     display: props.d || "",
     justifyContent: props.jc || "",
     marginLeft: props.ml || "",
+    marginRight: props.mr || "",
     margin: props.margin || "",
     width: props.w || "",
     marginBottom: props.mb || "",
