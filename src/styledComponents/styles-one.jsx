@@ -28,7 +28,7 @@ export const StyledDiv = styled.div((props) => ({
     marginTop: props.mt || "",
     overflow: props.ov || "",
     height: props.h || "",
-    boxShadow: props.boxS || "",
+    boxShadow: props.bs || "",
     border: props.b || "none",
     backgroundColor: props.bgc || "",
     borderRadius: props.br || "",
