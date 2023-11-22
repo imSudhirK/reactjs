@@ -15,6 +15,7 @@ export const HorizontalLine = styled.div((props) => ({
 
 export const StyledDiv = styled.div((props) => ({
     display: props.d || "",
+    flexDirection: props.fd || "",
     justifyContent: props.jc || "",
     margin: props.margin || "",
     marginLeft: props.ml || "",
@@ -217,6 +218,8 @@ export const StyledImage = styled.img`
   margin-right: ${props => props.mr || "auto"};
   margin-bottom: ${props => props.mb || ""};
   margin-left: ${props => props.ml || "auto"};
+  padding: ${props => props.p || ""};
   vertical-align: middle;
+  object-fit: contain;
   cursor: ${props => props.hoverable ? "pointer" : props.disabled ? "not-allowed" : ""};
 `;
