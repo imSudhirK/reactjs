@@ -4,7 +4,7 @@ import searchDocGif from "../../icons/searching-doc.gif";
 
 const Loading = () => {
     return (
-        <StyledDiv d="flex" jc="center" ta="center" h="100vh" w="100%" zI="120000" bgc="#ffffe0">
+        <StyledDiv d="flex" jc="center" ta="center" h="100vh" w="100%" zi="120000" bgc="#ffffe0">
             <StyledDiv>
                 <img src={searchDocGif} alt="logo" />
                 <StyledText>Fallback Loader</StyledText>

@@ -25,7 +25,7 @@ export const StyledDiv = styled.div((props) => ({
     width: props.w || "",
     top: props.t || "",
     position: props.ps || "",
-    zIndex: props.zI || "",
+    zIndex: props.zi || "",
     overflow: props.ov || "",
     height: props.h || "",
     boxShadow: props.bs || "",

@@ -1,10 +1,11 @@
-import React, { Suspense } from "react";
+import React, { Suspense, lazy } from "react";
 import { Routes, Route } from "react-router-dom"
 import loadable from "@loadable/component";
 
 const Fallback = loadable(() => import("../components/utilsUI/loading"));
 const Dashboard = loadable(() => import("../containers/dashboard"));
 const Contact = loadable(() => import("../containers/contact"));
+const TestComponenet = lazy(() => import("../containers/test-container"));
 
 const PrivateRouter = (props) => {
     return (
@@ -17,6 +18,10 @@ const PrivateRouter = (props) => {
                 <Route
                     path="/contact"
                     element={<Contact {...props} />}
+                />
+                <Route
+                    path="/test"
+                    element={<TestComponenet {...props} />}
                 />
             </Routes>
         </Suspense>

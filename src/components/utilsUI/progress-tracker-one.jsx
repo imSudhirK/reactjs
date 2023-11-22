@@ -7,7 +7,7 @@ const ProgressTrackerOne = () => {
     return (
         <StyledDiv d="flex" jc="space-between" ai="center" >
             {progressData?.map((pData, index) => {
-                const showLine = index != progressData.length - 1;
+                const showLine = index !== progressData.length - 1;
                 return (
                     <>
                         <StyledDiv d="flex" fd="column" w="100%" ta="center">

@@ -23,3 +23,11 @@ export function uploadSelfieVideo(formData) {
         }
     })
 }
+
+export function getCurrentAddress(lat, lng) {
+    const url = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}`;
+    return request({
+        url: url,
+        method: "GET"
+    })
+}

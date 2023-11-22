@@ -23,3 +23,20 @@ export function addCommas(input) {
     if (dec) res = res + dec;
     return res;
 };
+
+export function getCurrentLatLong() {
+    return new Promise((resolve, reject) => {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition((position) => {
+                resolve({
+                    lat: position.coords.latitude,
+                    lng: position.coords.longitude
+                })
+            }, (error) => {
+                reject({ err: error.message })
+            });
+        } else {
+            reject({ err: 'Geolocation is not supported by your browser.' });
+        }
+    })
+}

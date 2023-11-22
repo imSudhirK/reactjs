@@ -15,6 +15,11 @@ const items = [
         label: "Contact",
         key: "/contact",
         icon: <StyledIcon src={docIcon} />
+    },
+    {
+        label: "Test",
+        key: "/test",
+        icon: <StyledIcon src={docIcon} />
     }
 ]
 
