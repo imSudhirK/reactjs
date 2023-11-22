@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Button, Input } from 'antd';
+import { Button, Card, Input } from 'antd';
 
 
 export const HorizontalLine = styled.div((props) => ({
@@ -25,7 +25,6 @@ export const StyledDiv = styled.div((props) => ({
     top: props.t || "",
     position: props.ps || "",
     zIndex: props.zI || "",
-    marginTop: props.mt || "",
     overflow: props.ov || "",
     height: props.h || "",
     boxShadow: props.bs || "",
@@ -33,7 +32,6 @@ export const StyledDiv = styled.div((props) => ({
     backgroundColor: props.bgc || "",
     borderRadius: props.br || "",
     padding: props.p || "",
-    background: props.bgurl ? props.bgurl : "",
     backgroundRepeat: "no-repeat",
     backgroundSize: props.bs || "cover",
     flexDirection: props.fd || "",
@@ -48,14 +46,13 @@ export const StyledDiv = styled.div((props) => ({
     borderBottom: props.brb || "",
     cursor: props.hoverable ? "pointer" : "",
     maxHeight: props.mh || "",
+    maxWidth: props.mw || "",
     textAlign: props.ta || "",
 }));
 
 export const StyledText = styled.p((props) => ({
     display: props.d || "",
     position: props.pos || "",
-    left: props.pos === "absolute" ? props.left : "",
-    top: props.pos === "absolute" ? props.top : "",
     fontFamily: props.ff || "Lato",
     color: props.c || "#000",
     fontSize: props.fs || "16px",
@@ -78,11 +75,10 @@ export const StyledText = styled.p((props) => ({
     border: props.b || "",
     borderRadius: props.br || "",
     padding: props.pd || "",
-    height: props.h || "",
     justifyContent: props.jc || "",
     textDecorationLine: props.tdl || "",
-    top: props.top || "",
-    left: props.left || "",
+    top: props.t || "",
+    left: props.l || "",
     transform: props.tf || "",
     "&:hover": {
         cursor: props.hoverable ? "pointer" : ""
@@ -110,7 +106,6 @@ export const StyledButton = styled(Button)((props) => ({
     marginRight: props.mr || "",
     marginTop: props.mt || "",
     background: props.bcg || "",
-    marginTop: props.mt || "",
     alignSelf: props.as || "",
     textAlign: props.ta || "",
     "&:focus": {
@@ -135,12 +130,15 @@ export const StyledButton = styled(Button)((props) => ({
 export const StyledInput = styled(Input)((props) => ({
     width: props.w || "",
     height: props.h || '',
+    fontSize: props.fs || "",
+    fontWeight: props.fw || "",
+    lineHeight: props.lh || "",
     backgroundSize: props.bgs || "",
-    backgroundRepeat: props.bgr || '',
-    paddingRight: props.p || '',
+    backgroundRepeat: props.bgr || "no-repeat",
     backgroundImage: props.bgi || "",
     backgroundPosition: props.bgp || "",
     paddingRight: props.pr || "",
+    paddingLeft: props.pl || "",
     border: props.b || "",
     margin: props.margin || "",
     color: props.c || "",
@@ -165,23 +163,60 @@ export const StyledIcon = styled.img((props) => ({
     height: props.h || "32px",
     cursor: props.hoverable ? "pointer" : "",
     transform: props.hoverable ? props.transform || "" : "",
-    marginRight: props.mr || "",
     color: props.c || "",
-    marginLeft: props.ml || "",
     visibility: props.hide ? "hidden" : "",
     marginTop: props.mt || "",
-    marginBottom: props.mb || "",
     marginRight: props.mr || "",
-    margin: props.margin || "",
+    marginBottom: props.mb || "",
+    marginLeft: props.ml || "",
+    margin: props.m || "",
     padding: props.p || "",
     border: props.bdr || "",
     borderRadius: props.br || "",
     background: props.bgc || "",
     position: props.position || "",
     top: props.top || "",
-    bottom: props.bottom || "",
+    bottom: props.b || "",
     right: props.right || "",
-    bottom: props.bottom || "",
     boxShadow: props.bs || "",
-    display: props.d || ""
+    display: props.d || "",
+    zIndex: props.zi || ""
 }));
+
+export const StyledCard = styled(Card)((props) => ({
+    width: props.w || "342px",
+    height: props.h || "77px",
+    margin: props.m || "auto",
+    marginTop: props.mt || "",
+    marginRight: props.mr || "",
+    marginBottom: props.mb || "8px",
+    marginLeft: props.ml || "",
+    backgroundColor: props.bgc || "#FFFFFF",
+    border: props.b || "",
+    borderRadius: props.br || "4px",
+    "&:hover": {
+        cursor: props.hoverableCard ? "pointer" : ""
+    },
+    ".ant-card-body": {
+        paddingLeft: props.squarecard ? "" : "4px",
+        padding: props.p || "",
+        width: props.w || "342px",
+        height: props.h || "77px",
+        display: props.bd || "",
+        flexDirection: props.bfd || "",
+        alignItems: props.ai || ""
+    },
+}));
+
+export const StyledImage = styled.img`
+  display: ${props => (!props.d ? "block" : null)};
+  width: ${props => props.w};
+  height: ${props => props.h};
+  margin: ${props => props.m || ""}
+  margin-top: ${props => props.mt || "auto"};
+  margin-right: ${props => props.mr || "auto"};
+  margin-bottom: ${props => props.mb || ""};
+  margin-left: ${props => props.ml || "auto"};
+  vertical-align: middle;
+  cursor: ${props => props.hoverable ? "pointer" : props.disabled ? "not-allowed" : ""};
+`;
