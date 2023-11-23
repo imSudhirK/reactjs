@@ -35,7 +35,6 @@ export const StyledDiv = styled.div((props) => ({
     padding: props.p || "",
     backgroundRepeat: "no-repeat",
     backgroundSize: props.bs || "cover",
-    flexDirection: props.fd || "",
     background: props.bg || "",
     color: props.c || "",
     paddingTop: props.pt || "",

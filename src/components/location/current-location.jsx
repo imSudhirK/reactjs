@@ -3,8 +3,12 @@ import { Spin } from 'antd';
 import { StyledDiv, StyledText } from '../../styledComponents/styles-one';
 import { getCurrentLatLong } from '../../helpers/utils-one';
 import { getCurrentAddress } from '../../api/apis-one';
+import { useDispatch } from 'react-redux';
+import { setCurrentAddress } from '../../redux/actions/one';
 
 const CurrentLocation = () => {
+    const dispatch = useDispatch()
+
     const [isLoading, setIsLoading] = useState(false);
     const [latitude, setLatitude] = useState(null);
     const [longitude, setLongitude] = useState(null);
@@ -18,7 +22,8 @@ const CurrentLocation = () => {
                 setLatitude(res.lat);
                 setLongitude(res.lng);
                 const resp = await getCurrentAddress(res.lat, res.lng);
-                setAddress(resp?.data?.address)
+                setAddress(resp?.data?.address);
+                dispatch(setCurrentAddress(resp?.data?.address));
             }
         } catch (err) {
             console.log(err);
