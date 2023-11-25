@@ -3,12 +3,15 @@ import { Spin } from 'antd';
 import { StyledDiv, StyledText } from '../../styledComponents/styles-one';
 import { getCurrentLatLong } from '../../helpers/utils-one';
 import { getCurrentAddress } from '../../api/apis-one';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setCurrentAddress } from '../../redux/actions/one';
 import store from '../../redux/store';
 
 const ReduxDemo = () => {
     const dispatch = useDispatch()
+
+    const myAddress01 = useSelector((state) => state?.reducerOne?.currentAddress)
+    // console.log("myAddress01", myAddress01, "myAddress01")
 
     const [isLoading, setIsLoading] = useState(false);
     const [address, setAddress] = useState({})
@@ -19,9 +22,9 @@ const ReduxDemo = () => {
             if (res?.lat && res.lng) {
                 const resp = await getCurrentAddress(res.lat, res.lng);
                 dispatch(setCurrentAddress(resp?.data?.address));
-                
+
                 const myAddress = store.getState()?.reducerOne?.currentAddress;
-                console.log("myAddress", myAddress, "myAddress")
+                // console.log("myAddress", myAddress, "myAddress")
                 setAddress(myAddress);
             }
         } catch (err) {

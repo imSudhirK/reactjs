@@ -1,10 +1,9 @@
 import React from 'react';
+import AuthenticatedLayout from './layout/authenticated-layout';
 
 function App() {
   return (
-    <React.Fragment>
-      Hello World!
-    </React.Fragment>
+    <AuthenticatedLayout />
   );
 }
 
