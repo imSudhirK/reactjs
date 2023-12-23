@@ -7,12 +7,12 @@ import PrivateRouter from "../router/private-router";
 
 const AuthenticatedLayout = () => {
     return (
-        <Router>
-            <StyledDiv d="flex">
+        <StyledDiv d="flex">
+            <Router>
                 <SideBar />
                 <PrivateRouter />
-            </StyledDiv>
-        </Router>
+            </Router>
+        </StyledDiv>
     )
 }
 export default AuthenticatedLayout;

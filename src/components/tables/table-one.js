@@ -130,14 +130,8 @@ const OneTable = () => {
                     placeholder="Search Name" ref={refSearchByName}
                     onChange={debouncedSearch(handleSearchByName, 2000)}
                 /></StyledDiv>
-                <StyledDiv d="flex" jc="center" w="10%">
+                <StyledDiv d="flex" jc="center" p="0 1%" w="10%">
                     <StyledButton onClick={handleExportCSV}>Export CSV</StyledButton>
-                </StyledDiv>
-                <StyledDiv d="flex" jc="center" w="10%">
-                    <StyledButton>Export Excel</StyledButton>
-                </StyledDiv>
-                <StyledDiv d="flex" jc="center" w="10%">
-                    <StyledButton>Export Pdf</StyledButton>
                 </StyledDiv>
             </StyledDiv>
 
