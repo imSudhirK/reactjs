@@ -1,11 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { Button, Card, Form, Input, InputNumber } from "antd"
-import { StyledDiv } from "../styledComponents/styles-one"
+import { useNavigate } from "react-router-dom";
+import { Button, Form, Input, message } from "antd"
+import { StyledDiv, StyledText } from "../styledComponents/styles-one"
+import { signUp } from "../api/users";
 
 const SignUp = () => {
+    const navigate = useNavigate();
     const [form] = Form.useForm();
     const values = Form.useWatch([], form);
     const [submittable, setSubmittable] = useState(false);
+
+    const goToLogIn = () => { navigate("/login") }
 
     const handleFormValidation = () => {
         form.validateFields({ formOne: false, }).then(
@@ -15,7 +20,12 @@ const SignUp = () => {
     }
 
     const handleSubmit = () => {
-        console.log(values)
+        signUp(values).then(resp => {
+            if (resp.status === 200) goToLogIn();
+            else throw resp;
+        }).catch(err => {
+            return message.error(err.response?.data || err.message || "Register Failed")
+        })
     }
 
     useEffect(() => {
@@ -24,7 +34,7 @@ const SignUp = () => {
 
     return (
         <StyledDiv d="flex" jc="center" h="100vh" w="100%">
-            <StyledDiv h="320px" w="600px" br="10px" p="20px" mt="100px" bs="0px 0px 16px 0px #00000040" b=".5px solid black">
+            <StyledDiv h="380px" w="600px" br="10px" p="20px" mt="100px" bs="0px 0px 16px 0px #00000040" b=".5px solid black">
                 <Form form={form} name="formOne" layout="vertical">
                     <Form.Item
                         name="name"
@@ -51,6 +61,9 @@ const SignUp = () => {
                         <Button type="primary" htmlType="submit" disabled={!submittable} onClick={handleSubmit}>Submit</Button>
                     </Form.Item>
                 </Form>
+                <StyledText>Already Registered ?
+                    <span style={{ color: "blue", cursor: "pointer" }} onClick={goToLogIn}> Login</span>
+                </StyledText>
             </StyledDiv>
         </StyledDiv>
     )
