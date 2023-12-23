@@ -1,4 +1,4 @@
-import { BASE_URL } from "../helpers/utils-two";
+import { BASE_URL } from "../utils/constants";
 import Axios from "axios";
 const axios = Axios.create({});
 

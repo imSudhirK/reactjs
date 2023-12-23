@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Spin } from 'antd';
 import { StyledDiv, StyledText } from '../../styledComponents/styles-one';
-import { getCurrentLatLong } from '../../helpers/utils-one';
+import { getCurrentLatLong } from '../../utils/utils-one';
 import { getCurrentAddress } from '../../api/apis-one';
 import { useDispatch } from 'react-redux';
 import { setCurrentAddress } from '../../redux/actions/one';
