@@ -17,6 +17,7 @@ export const StyledDiv = styled.div((props) => ({
     display: props.d || "",
     flexDirection: props.fd || "",
     justifyContent: props.jc || "",
+    flexWrap: props.fwp || "",
     alignItems: props.ai || "",
     textAlign: props.ta || "",
     width: props.w || "",
@@ -186,7 +187,7 @@ export const StyledIcon = styled.img((props) => ({
 
 export const StyledCard = styled(Card)((props) => ({
     width: props.w || "342px",
-    height: props.h || "77px",
+    height: props.h || "auto",
     margin: props.m || "auto",
     marginTop: props.mt || "",
     marginRight: props.mr || "",
@@ -199,10 +200,10 @@ export const StyledCard = styled(Card)((props) => ({
         cursor: props.hoverableCard ? "pointer" : ""
     },
     ".ant-card-body": {
-        paddingLeft: props.squarecard ? "" : "4px",
+        paddingLeft: props.squarecard ? "" : "",
         padding: props.p || "",
         width: props.w || "342px",
-        height: props.h || "77px",
+        height: props.h || "auto",
         display: props.bd || "",
         flexDirection: props.bfd || "",
         alignItems: props.ai || ""

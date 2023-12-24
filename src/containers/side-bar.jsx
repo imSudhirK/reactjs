@@ -17,6 +17,11 @@ const items = [
         icon: <StyledIcon src={docIcon} />
     },
     {
+        label: "Notes",
+        key: "/notes",
+        icon: <StyledIcon src={docIcon} />
+    },
+    {
         label: "Test",
         key: "/test",
         icon: <StyledIcon src={docIcon} />
