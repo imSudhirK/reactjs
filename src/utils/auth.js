@@ -19,3 +19,10 @@ export function setRefreshToken(refreshToken) {
 export function getRefreshToken() {
     return window.localStorage.getItem('refreshToken')
 }
+
+// remove credential
+export function removeCredentials(){
+    window.localStorage.removeItem('accessToken');
+    window.localStorage.removeItem('refreshToken');
+    return;
+}
